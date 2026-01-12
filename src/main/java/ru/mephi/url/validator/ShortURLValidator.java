@@ -2,6 +2,7 @@ package ru.mephi.url.validator;
 
 import jakarta.persistence.EntityExistsException;
 import jakarta.validation.ValidationException;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.stereotype.Service;
@@ -15,13 +16,9 @@ import java.time.temporal.ChronoUnit;
 import java.util.UUID;
 
 @Service
+@RequiredArgsConstructor
 public class ShortURLValidator {
     private final ShortURLRepository urlRepository;
-
-    @Autowired
-    public ShortURLValidator(ShortURLRepository urlRepository) {
-        this.urlRepository = urlRepository;
-    }
 
     public void validateAccess(ShortURL url) {
         checkExpiration(url);

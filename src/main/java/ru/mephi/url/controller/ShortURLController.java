@@ -1,6 +1,7 @@
 package ru.mephi.url.controller;
 
 import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -15,13 +16,9 @@ import java.net.URI;
 import java.util.UUID;
 
 @RestController
+@RequiredArgsConstructor
 public class ShortURLController {
     private final ShortURLService urlService;
-
-    @Autowired
-    public ShortURLController(ShortURLService urlService) {
-        this.urlService = urlService;
-    }
 
     @PostMapping("/shorten")
     public ResponseEntity<ShortURLResponseDto> createShortUrl(@RequestHeader(name = "UUID", required = false) UUID uuid,

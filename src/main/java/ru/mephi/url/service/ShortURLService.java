@@ -1,6 +1,7 @@
 package ru.mephi.url.service;
 
 import jakarta.persistence.EntityNotFoundException;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,20 +19,13 @@ import ru.mephi.url.validator.ShortURLValidator;
 import java.util.UUID;
 
 @Service
+@RequiredArgsConstructor
 @Slf4j
 public class ShortURLService {
     private final ShortURLRepository urlRepository;
     private final ShortURLMapper urlMapper;
     private final ShortURLValidator urlValidator;
     private final UserService userService;
-
-    @Autowired
-    public ShortURLService(ShortURLRepository urlRepository, ShortURLMapper urlMapper, ShortURLValidator urlValidator, UserService userService) {
-        this.urlRepository = urlRepository;
-        this.urlMapper = urlMapper;
-        this.urlValidator = urlValidator;
-        this.userService = userService;
-    }
 
     @Transactional
     public ShortURLResponseDto createShortUrl(UUID userId, ShortURLCreateDto requestDto) {

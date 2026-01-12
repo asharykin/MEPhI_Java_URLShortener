@@ -1,5 +1,6 @@
 package ru.mephi.url.mapper;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -13,13 +14,9 @@ import ru.mephi.url.model.User;
 import java.time.LocalDateTime;
 
 @Component
+@RequiredArgsConstructor
 public class ShortURLMapper {
     private final ShortURLConfig config;
-
-    @Autowired
-    public ShortURLMapper(ShortURLConfig config) {
-        this.config = config;
-    }
 
     public ShortURLResponseDto entityToResponseDto(ShortURL url) {
         ShortURLResponseDto dto = new ShortURLResponseDto();

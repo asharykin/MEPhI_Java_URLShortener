@@ -1,5 +1,6 @@
 package ru.mephi.url.service;
 
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -12,14 +13,10 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 @Slf4j
 public class CleanupService {
     private final ShortURLRepository urlRepository;
-
-    @Autowired
-    public CleanupService(ShortURLRepository urlRepository) {
-        this.urlRepository = urlRepository;
-    }
 
     @Scheduled(cron = "0 0 * * * *") // В начале каждого часа
     @Transactional
