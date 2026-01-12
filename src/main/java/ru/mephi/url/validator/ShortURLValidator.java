@@ -2,9 +2,7 @@ package ru.mephi.url.validator;
 
 import jakarta.persistence.EntityExistsException;
 import jakarta.validation.ValidationException;
-import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.expression.AccessException;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.stereotype.Service;
 import ru.mephi.url.dto.ShortURLUpdateDto;
@@ -80,7 +78,7 @@ public class ShortURLValidator {
         if (urlRepository.existsByLongUrlForUser(user, longUrl)) {
             throw new EntityExistsException(
                     "У пользователя с ID " + user.getId() + " уже есть активная короткая ссылка, " +
-                    "перенаправляющая на " + longUrl
+                            "перенаправляющая на " + longUrl
             );
         }
     }

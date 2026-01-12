@@ -26,12 +26,12 @@ public class UserService {
     @Transactional
     public User createUser() {
         User user = new User();
-        user.setId(getRandomId());
+        user.setId(getUniqueRandomId());
         userRepository.save(user);
         return user;
     }
 
-    private UUID getRandomId() {
+    private UUID getUniqueRandomId() {
         UUID id;
         do {
             id = UUID.randomUUID();

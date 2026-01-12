@@ -1,9 +1,7 @@
 package ru.mephi.url.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
 import ru.mephi.url.model.ShortURL;
 import ru.mephi.url.model.User;
 

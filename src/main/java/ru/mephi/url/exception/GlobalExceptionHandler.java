@@ -2,7 +2,6 @@ package ru.mephi.url.exception;
 
 import jakarta.persistence.EntityExistsException;
 import jakarta.persistence.EntityNotFoundException;
-import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.ValidationException;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
@@ -15,7 +14,6 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import ru.mephi.url.dto.ErrorResponseDto;
 
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
