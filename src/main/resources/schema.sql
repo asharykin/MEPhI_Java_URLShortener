@@ -1,6 +1,3 @@
-DROP TABLE short_urls;
-DROP TABLE users;
-
 CREATE TABLE IF NOT EXISTS users (
     id UUID PRIMARY KEY
 );
