@@ -1,4 +1,4 @@
-package ru.mephi.url.validator;
+package ru.mephi.url.service;
 
 import jakarta.persistence.EntityNotFoundException;
 import org.junit.jupiter.api.DisplayName;
@@ -9,7 +9,6 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import ru.mephi.url.model.User;
 import ru.mephi.url.repository.UserRepository;
-import ru.mephi.url.service.UserService;
 
 import java.util.Optional;
 import java.util.UUID;
