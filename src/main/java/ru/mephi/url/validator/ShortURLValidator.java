@@ -3,7 +3,6 @@ package ru.mephi.url.validator;
 import jakarta.persistence.EntityExistsException;
 import jakarta.validation.ValidationException;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.stereotype.Service;
 import ru.mephi.url.dto.ShortURLUpdateDto;

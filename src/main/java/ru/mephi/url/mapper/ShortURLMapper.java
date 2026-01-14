@@ -1,7 +1,6 @@
 package ru.mephi.url.mapper;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import ru.mephi.url.config.ShortURLConfig;
