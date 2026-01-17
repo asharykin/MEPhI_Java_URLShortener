@@ -53,7 +53,7 @@ java -jar target/url-shortener.jar
 ```bash
 curl -X POST http://localhost:8080/shorten \
      -H "Content-Type: application/json" \
-     -d "{ "longUrl": "https://github.com/asharykin", "useLimit": 15, "ttlHours": 120 }"
+     -d "{ "longUrl": "https://github.com/asharykin/MEPhI_Java_URLShortener", "useLimit": 15, "ttlHours": 120 }"
 ```
 
 ### Создание новой короткой ссылки (для уже существующего пользователя)
@@ -98,6 +98,3 @@ curl -X DELETE http://localhost:8080/wrPYCX \
 ```bash
 ./mvnw test
 ```
-
-Надеюсь, вам понравится моё приложение, я правда старался и делал сам, с таким API идея в чате была от меня :)  
-К сожалению, на тесты, автоматизацию, README и прочее времени оставалось немного :(
