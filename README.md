@@ -53,7 +53,7 @@ java -jar target/url-shortener.jar
 ```bash
 curl -X POST http://localhost:8080/shorten \
      -H "Content-Type: application/json" \
-     -d "{ "longUrl": "https://github.com/asharykin/MEPhI_Java_URLShortener", "useLimit": 15, "ttlHours": 120 }"
+     -d "{ "longUrl": "https://github.com/asharykin", "useLimit": 15, "ttlHours": 120 }"
 ```
 
 ### Создание новой короткой ссылки (для уже существующего пользователя)
@@ -61,7 +61,7 @@ curl -X POST http://localhost:8080/shorten \
 curl -X POST http://localhost:8080/shorten \
      -H "Content-Type: application/json" \
      -H "UUID: f27cb826-35a9-4e6f-b9f0-399a71623d27" \
-     -d "{ "longUrl": "https://github.com/asharykin", "useLimit": 15, "ttlHours": 120 }"
+     -d "{ "longUrl": "https://github.com/asharykin/MEPhI_Java_URLShortener", "useLimit": 15, "ttlHours": 120 }"
 ```
 
 ### Переход по короткой ссылке с перенаправлением (лучше это делать из браузера)
