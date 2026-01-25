@@ -42,7 +42,7 @@ public class GlobalExceptionHandler {
     }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
-    public ResponseEntity<ErrorResponseDto> handleValidationExceptions(MethodArgumentNotValidException ex) {
+    public ResponseEntity<ErrorResponseDto> handleArgumentNotValidException(MethodArgumentNotValidException ex) {
         Map<String, String> errors = new LinkedHashMap<>();
         ex.getBindingResult().getAllErrors().forEach((error) -> {
             String fieldName = ((FieldError) error).getField();
@@ -56,7 +56,7 @@ public class GlobalExceptionHandler {
     }
 
     @ExceptionHandler(EntityNotFoundException.class)
-    public ResponseEntity<ErrorResponseDto> handleNotFoundExceptions(Exception ex) {
+    public ResponseEntity<ErrorResponseDto> handleEntityNotFoundExceptions(Exception ex) {
         ErrorResponseDto responseDto = new ErrorResponseDto();
         responseDto.setError(ex.getMessage());
         return new ResponseEntity<>(responseDto, HttpStatus.NOT_FOUND);
@@ -70,7 +70,7 @@ public class GlobalExceptionHandler {
     }
 
     @ExceptionHandler(ValidationException.class)
-    public ResponseEntity<ErrorResponseDto> handleValidationExceptions(Exception ex) {
+    public ResponseEntity<ErrorResponseDto> handleArgumentNotValidException(Exception ex) {
         ErrorResponseDto responseDto = new ErrorResponseDto();
         responseDto.setError(ex.getMessage());
         return new ResponseEntity<>(responseDto, HttpStatus.BAD_REQUEST);
