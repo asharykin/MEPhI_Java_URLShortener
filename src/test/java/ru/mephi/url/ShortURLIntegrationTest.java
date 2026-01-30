@@ -44,9 +44,8 @@ class ShortURLIntegrationTest {
     private ObjectMapper objectMapper;
 
     @Test
-    @DisplayName("Сценарий: Полный жизненный цикл ссылки (Создание -> Переход -> Удаление)")
+    @DisplayName("Сценарий: Создание -> Переход -> Удаление")
     void fullCycle_Success() throws Exception {
-        // 1. Создание ссылки
         ShortURLCreateDto createDto = new ShortURLCreateDto();
         createDto.setLongUrl("https://spring.io");
         createDto.setUseLimit(5);
@@ -61,11 +60,9 @@ class ShortURLIntegrationTest {
         String shortCode = responseDto.getShortUrl().substring(responseDto.getShortUrl().lastIndexOf("/") + 1);
         UUID creatorId = responseDto.getCreatorId();
 
-        // 2. Проверка, что пользователь и ссылка созданы в БД
         assertTrue(userRepository.existsById(creatorId));
         assertTrue(urlRepository.findByShortUrl(shortCode).isPresent());
 
-        // 3. Переход по ссылке
         mockMvc.perform(get("/{shortUrl}", shortCode))
                 .andExpect(status().isFound())
                 .andExpect(header().string("Location", "https://spring.io"));
@@ -73,7 +70,6 @@ class ShortURLIntegrationTest {
         ShortURL updatedUrl = urlRepository.findByShortUrl(shortCode).get();
         assertEquals(1, updatedUrl.getUseCount());
 
-        // 4. Удаление ссылки владельцем
         mockMvc.perform(delete("/{shortUrl}", shortCode)
                         .header("UUID", creatorId.toString()))
                 .andExpect(status().isNoContent());
@@ -84,12 +80,10 @@ class ShortURLIntegrationTest {
     @Test
     @DisplayName("Сценарий: Попытка перехода по просроченной ссылке")
     void redirect_ExpiredLink_ReturnsBadRequest() throws Exception {
-        // Создаем пользователя
         User user = new User();
         user.setId(UUID.randomUUID());
         userRepository.save(user);
 
-        // Создаем ссылку, которая "протухла" (создана 24 часа назад с TTL 1 час)
         ShortURL expiredUrl = new ShortURL();
         expiredUrl.setShortUrl("oldone");
         expiredUrl.setLongUrl("https://expired.com");
@@ -124,10 +118,8 @@ class ShortURLIntegrationTest {
         limitUrl.setDeleted(false);
         urlRepository.save(limitUrl);
 
-        // Первый переход будет ок (счетчик станет 2), но второй должен упасть
         mockMvc.perform(get("/limits")).andExpect(status().isFound());
 
-        // Теперь лимит исчерпан
         mockMvc.perform(get("/limits"))
                 .andExpect(status().isBadRequest())
                 .andExpect(jsonPath("$.error").value(containsString("исчерпан")));
